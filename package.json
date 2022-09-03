@@ -1,0 +1,21 @@
+{
+  "name": "alpaca-node-client-app",
+  "version": "1.0.0",
+  "description": "A node project to trade stocks on Alpaca.",
+  "main": "index.js",
+  "author": "Jeff Merckens",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint . --fix",
+    "start": "ts-node main.ts"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/node": "^18.7.14",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "^8.23.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.2"
+  }
+}
