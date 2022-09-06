@@ -10,4 +10,6 @@ Clone the repo, install dependencies with yarn, and run with the start script.
 
 ## Environment Variables
 
-Depends on several environment variables for secrets to communicate with Alpaca; either set these up locally or login/link with the Railway CLI and use the `railway up` command to use the env variables stored there.
+Depends on several environment variables for secrets to communicate with Alpaca; either set these up locally or login/link with the Railway CLI and use the `railway run npm start` command to use the env variables stored there.
+
+`railway up` triggers a deployment, as will a push/merge to the main branch of the repo.
