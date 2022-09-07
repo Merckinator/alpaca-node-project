@@ -1,15 +1,41 @@
 "use strict";
+import { Account } from './interfaces/account';
+import { Bar } from './interfaces/bar';
 import { Position } from './interfaces/position';
 
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 const alpaca = new Alpaca({ paper: true });
 
-alpaca.getAccount().then((account: any) => {
+alpaca.getAccount().then((account: Account) => {
   console.log('Current Account:', account);
 });
 
 alpaca.getPositions().then((positions: Position[]) => {
   console.log('Current Positions:', positions);
+  const symbols = positions.map((pos: Position) => pos.symbol);
+
+  const today = new Date();
+  today.setDate(-10);
+
+  alpaca.getMultiBarsV2(
+    symbols,
+    {
+      start: today.toISOString().split('T')[0],
+      timeframe: alpaca.newTimeframe(1, alpaca.timeframeUnit.DAY),
+      limit: 10,
+    },
+  ).then((multiBars: any) => {
+    console.log('Multibars were:', multiBars);
+    
+    symbols.forEach((symbol: string) => {
+      const stockBars: Bar[] = multiBars[symbol];
+      const stockPrices = stockBars.map((bar: Bar) => bar.ClosePrice);
+      // Prices are returned old to new
+      stockPrices.reverse();
+      // Reversing makes it easier to calculate short-term average
+      
+    });
+  });
 });
 
 /**
